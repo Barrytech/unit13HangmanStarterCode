@@ -4,6 +4,16 @@
 // Set wrongGuesses equal to an empty array
 // Set images to an array contataining all of your images links as strings (in order)
 var secretWord = null;
+var correctGuess = [];
+var wrongGuess = []; 
+var images = bodypart[
+    "images/Hangman-0.png",
+    "images/Hangman-1.png",
+    "images/Hangman-2.png",
+    "images/Hangman-3.png",
+    "images/Hangman-4.png", 
+    "images/Hangman-5.png",
+    "images/Hangman-6.png"]
 
 
 
@@ -16,15 +26,19 @@ var secretWord = null;
 // call the drawWord() function
 // call the drawHangman() function
 function prepareGame() {
-  secretWord = ['J','A','V','A','S','C','R', 'I', 'P', 'T'];
-
-    
+  secretWord = ['S','A','V','I','T','A','R',];
+  correctGuess= [];
+  wrongGuess= [];
+  drawWord();
+  drawHangman();
   
 }
+
 
 // in this onWin() function below 
 // 1. alert "You won!"
 function onWin() {
+    alert("You won!")
   
   
 }
@@ -32,8 +46,7 @@ function onWin() {
 // in this onLose() function below 
 // 1. alert "You lost!"
 function onLose() {
-  
-  
+    alert("You lost!")
   
 }
 
@@ -43,6 +56,9 @@ function onLose() {
 //    a. if correctGuesses does not include the letter (!) set variable hasAll to false
 // 3. return hasAll
 function checkIfWon() {  
+    var hasAll= true;
+   return hasAll;
+   
   
   
   
@@ -52,8 +68,14 @@ function checkIfWon() {
 // 1. declare a variable misses and set it equal to the length of wrongGuesses array
 // 2. if misses is less than 6 return false else return true
 function checkIfLost() {
-  
-  
+    var misses = wrongGuess.length;
+    if (misses < 6){
+        return false;
+    }
+    else{
+        return true;
+    }
+    
   
   
 }
@@ -63,7 +85,8 @@ function checkIfLost() {
 // 2. call the drawWord function
 // 3. if the checkIfWon() is returns true call the onWin() function 
 function onCorrectGuess(letter) {
-    
+    correctGuess.push(letter)
+    return "ok";
   
   
   
