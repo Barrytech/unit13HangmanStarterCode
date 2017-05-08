@@ -3,17 +3,20 @@
 // Set correctGuesses equal to an empty array
 // Set wrongGuesses equal to an empty array
 // Set images to an array contataining all of your images links as strings (in order)
+
+
 var secretWord = null;
 var correctGuess = [];
-var wrongGuess = []; 
-var images = bodypart[
+var wrongGuess = [];
+var images = [
     "images/Hangman-0.png",
     "images/Hangman-1.png",
     "images/Hangman-2.png",
     "images/Hangman-3.png",
-    "images/Hangman-4.png", 
+    "images/Hangman-4.png",
     "images/Hangman-5.png",
-    "images/Hangman-6.png"]
+    "images/Hangman-6.png"
+]
 
 
 
@@ -26,12 +29,12 @@ var images = bodypart[
 // call the drawWord() function
 // call the drawHangman() function
 function prepareGame() {
-  secretWord = ['S','A','V','I','T','A','R',];
-  correctGuess= [];
-  wrongGuess= [];
-  drawWord();
-  drawHangman();
-  
+    secretWord = ['S', 'A', 'V', 'I', 'T', 'A', 'R', ];
+    correctGuess = [];
+    wrongGuess = [];
+    drawWord();
+    drawHangman();
+
 }
 
 
@@ -39,15 +42,15 @@ function prepareGame() {
 // 1. alert "You won!"
 function onWin() {
     alert("You won!")
-  
-  
+
+
 }
 
 // in this onLose() function below 
 // 1. alert "You lost!"
 function onLose() {
     alert("You lost!")
-  
+
 }
 
 // in this checkIfWon() function below
@@ -55,29 +58,27 @@ function onLose() {
 // 2. For each letter in secretWord 
 //    a. if correctGuesses does not include the letter (!) set variable hasAll to false
 // 3. return hasAll
-function checkIfWon() {  
-    var hasAll= true;
-   return hasAll;
-   
-  
-  
-  
+function checkIfWon() {
+    var hasAll = true;
+    return hasAll;
+
 }
+
 
 // in this checkIfLost() function below
 // 1. declare a variable misses and set it equal to the length of wrongGuesses array
 // 2. if misses is less than 6 return false else return true
 function checkIfLost() {
     var misses = wrongGuess.length;
-    if (misses < 6){
+    if (misses < 6) {
         return false;
     }
-    else{
+    else {
         return true;
     }
-    
-  
-  
+
+
+
 }
 
 // in the onCorrectGuess() function below
@@ -87,34 +88,44 @@ function checkIfLost() {
 function onCorrectGuess(letter) {
     correctGuess.push(letter)
     return "ok";
-  
-  
-  
-  
 }
+if (checkIfWon === true) {
+    return onWin();
+}
+
+
+
+
+
 
 // in the onWrongGuess() function below
 // 1. add the the letter variable to the array wrongGuesses
 // 2. call the drawHangman function
 // 3. if the checkIfLost() function returns true call the onLose() function 
 function onWrongGuess(letter) {
-    
-  
-  
-  
-  
+    wrongGuess.push(letter)
+    drawHangman();
+    if (checkIfLost === true) {
+        onLose();
+
+    }
 }
 
 // in the judgeGuess function below
 // 1. if the letter is included in secretWord, call the onCorrectGuess(letter) function
 //    otherwise call onWrongGuess(letter) function
 function judgeGuess(letter) {
-  
-  
-  
-  
-  
+    if (letter === secretWord) {
+        return onCorrectGuess();
+
+    }
+    else {
+        return onWrongGuess();
+    }
+
+
 }
+
 
 // in the drawWord function below
 // 1. empty the div tag with the id "word"
@@ -122,24 +133,30 @@ function judgeGuess(letter) {
 //    if correctGuesses includes letter append the letter
 //    othewise append and underscore
 function drawWord() {
-  
-  
-  
-  
-  
-  
+    $("#word").html("");
+    secretWord.forEach(function(letter) {
+        if (correctGuess === letter) {
+            $("#word").append(letter);
+        }
+        else {
+            $("#word").append("_");
+        }
+
+    })
 }
+
 
 // in the drawHangman function below
 // 1. define a variable misses equal to the length of wrongGuesses
 // 2. change the src of the img tag with the id hangman 
 //    to the correct image url based on the number of misses
 function drawHangman() {
-  
-  
-  
-  
+    var misses = wrongGuess.length;
+    if (misses < 6) {
+        $("#hangman").attr("src", images[misses])
+    }
 }
+
 
 // in the onKeyDown function below
 // 1. define a variable letter an set it equal to the correct letter
@@ -147,16 +164,17 @@ function drawHangman() {
 // 3. call the judgeGuess function with letter as an argument
 
 function onKeyDown(event) {
-  
-  
-  
-  
+    var letter = event.Char;
+
+
+
+
 }
 
 // Call the prepare game function
 // Initialize a jQuery keydown event handler 
 //       (Keydown function should take onKeyDown function as an argument)
 $(document).ready(function() {
- 
-  
+
+
 });
