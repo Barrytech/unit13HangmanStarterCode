@@ -4,7 +4,7 @@
 // Set wrongGuesses equal to an empty array
 // Set images to an array contataining all of your images links as strings (in order)
 
-
+/*global $*/
 var secretWord = null;
 var correctGuess = [];
 var wrongGuess = [];
@@ -29,7 +29,7 @@ var images = [
 // call the drawWord() function
 // call the drawHangman() function
 function prepareGame() {
-    secretWord = ['S', 'A', 'V', 'I', 'T', 'A', 'R', ];
+    secretWord = ['S', 'A', 'V', 'I', 'T', 'A', "R", ];
     correctGuess = [];
     wrongGuess = [];
     drawWord();
@@ -87,12 +87,12 @@ function checkIfLost() {
 // 3. if the checkIfWon() is returns true call the onWin() function 
 function onCorrectGuess(letter) {
     correctGuess.push(letter)
-    return "ok";
-}
-if (checkIfWon === true) {
-    return onWin();
-}
+    drawWord();
 
+    if (checkIfWon === true) {
+        onWin();
+    }
+}
 
 
 
@@ -115,12 +115,12 @@ function onWrongGuess(letter) {
 // 1. if the letter is included in secretWord, call the onCorrectGuess(letter) function
 //    otherwise call onWrongGuess(letter) function
 function judgeGuess(letter) {
-    if (letter === secretWord) {
-        return onCorrectGuess();
+    if (secretWord.join("").includes(letter)) {
+        return onCorrectGuess(letter);
 
     }
     else {
-        return onWrongGuess();
+        return onWrongGuess(letter);
     }
 
 
@@ -135,7 +135,7 @@ function judgeGuess(letter) {
 function drawWord() {
     $("#word").html("");
     secretWord.forEach(function(letter) {
-        if (correctGuess === letter) {
+        if (correctGuess.join("").includes(letter)) {
             $("#word").append(letter);
         }
         else {
@@ -164,10 +164,12 @@ function drawHangman() {
 // 3. call the judgeGuess function with letter as an argument
 
 function onKeyDown(event) {
-    var letter = event.Char;
+    debugger
+    var letter = String.fromCharCode(event.which);
+    console.log(letter);
+    var letter = letter.charAt(0).toUpperCase();
 
-
-
+    judgeGuess(letter);
 
 }
 
@@ -175,6 +177,9 @@ function onKeyDown(event) {
 // Initialize a jQuery keydown event handler 
 //       (Keydown function should take onKeyDown function as an argument)
 $(document).ready(function() {
-
+    prepareGame();
+    var letter = event.key;
+    alert("You guessed" + letter + "!");
+    $("body").keydown(onKeyDown);
 
 });
