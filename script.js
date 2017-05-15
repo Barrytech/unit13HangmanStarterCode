@@ -59,8 +59,18 @@ function onLose() {
 //    a. if correctGuesses does not include the letter (!) set variable hasAll to false
 // 3. return hasAll
 function checkIfWon() {
+
     var hasAll = true;
-    return hasAll;
+    secretWord.forEach(function(letter, secretWord) {
+        var hasletter = $.inArray(letter, correctGuess);
+
+        if (hasletter === -1) {
+            hasAll = false;
+        }
+
+
+    });
+    return hasAll
 
 }
 
@@ -89,7 +99,7 @@ function onCorrectGuess(letter) {
     correctGuess.push(letter)
     drawWord();
 
-    if (checkIfWon === true) {
+    if (checkIfWon() === true) {
         onWin();
     }
 }
@@ -105,7 +115,7 @@ function onCorrectGuess(letter) {
 function onWrongGuess(letter) {
     wrongGuess.push(letter)
     drawHangman();
-    if (checkIfLost === true) {
+    if (checkIfLost() === true) {
         onLose();
 
     }
@@ -152,10 +162,12 @@ function drawWord() {
 //    to the correct image url based on the number of misses
 function drawHangman() {
     var misses = wrongGuess.length;
-    if (misses < 6) {
-        $("#hangman").attr("src", images[misses])
-    }
+
+    $("#hangman").attr("src", images[misses])
+
+
 }
+
 
 
 // in the onKeyDown function below
@@ -164,7 +176,7 @@ function drawHangman() {
 // 3. call the judgeGuess function with letter as an argument
 
 function onKeyDown(event) {
-    debugger
+
     var letter = String.fromCharCode(event.which);
     console.log(letter);
     var letter = letter.charAt(0).toUpperCase();
@@ -179,7 +191,7 @@ function onKeyDown(event) {
 $(document).ready(function() {
     prepareGame();
     var letter = event.key;
-    alert("You guessed" + letter + "!");
+    // alert("You guessed" + letter + "!");
     $("body").keydown(onKeyDown);
 
 });
