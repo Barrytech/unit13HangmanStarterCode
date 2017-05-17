@@ -41,7 +41,11 @@ function prepareGame() {
 // in this onWin() function below 
 // 1. alert "You won!"
 function onWin() {
-    alert("You won!")
+    // alert("You won!")
+    $("#lost").html('<img src="https://s-media-cache-ak0.pinimg.com/564x/0b/c0/9b/0bc09b61caed962d953117ecabb558f3.jpg"/>')
+
+
+
 
 
 }
@@ -49,7 +53,8 @@ function onWin() {
 // in this onLose() function below 
 // 1. alert "You lost!"
 function onLose() {
-    alert("You lost!")
+    // alert("You lost!")
+    $("#lost").html('<img src="http://www.personal.psu.edu/afr3/blogs/SIOW/laughing%20emoticon.jpg" />');
 
 }
 
