@@ -1,37 +1,31 @@
 <html>
-
 <head>
   <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <link rel="icon" href="images/loghmo.jpg" type='image/x-icon'>
   <link rel="stylesheet" type="text/css" href="style.css">
+   <!-- Bootstrap CSS  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Fontawesome CSS  -->
   <script src="script.js"></script>
   <title>Hangman</title>
 </head>
-
 <body>
-  <h1 style="text-align:center; font-weight: bolder; color: blue"> We've all played this on a board</h1>
+  
+<h1 style="color:green"> Game Hangman </h1>
+<p> I have a secret word, can you guess and not hang a man?</p>
+<h2 style="text-align:center"> Note: For a small hint, it is a name of a DC-CW character of my second favorite show</h2>
 
-  <div class="container mycontainer">
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-5">
-        <h2> Guess my secret word</h2>
-        <img id="hangman" src="images/Hangman-0.png" />
-        <div id="word">_______</div>
-      </div>
-    <div class="col-md-5" id="lost"> 
-    <h3> Your results here:</h3>
-    </div>
-    <div class="col-md-1"> </div>
+<div class="row">
+  <div class="col-md-5" id="lost"> </div>
+  <div class="col-md-1"></div>
+  <div class="col-md-6" id="box">
+    <img id="hangman" src="images/Hangman-0.png" />
+        <div id="word">_______</div> 
   </div>
-  </div>
+</div>
 
-
-
-
-
-  </div>
-  </div>
-  </div>
 </body>
 
 </html>
